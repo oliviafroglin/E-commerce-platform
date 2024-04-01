@@ -8,7 +8,7 @@ function HomePage({ addToCart }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [showCategories, setShowCategories] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1); // Assuming there's at least one page
+  const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,6 @@ function HomePage({ addToCart }) {
   }, [selectedCategory, searchTerm]);
 
   useEffect(() => {
-    // This effect runs when currentPage changes, except on initial render
     fetchProducts(selectedCategory, currentPage, searchTerm);
   }, [currentPage]);
 
@@ -38,7 +37,7 @@ function HomePage({ addToCart }) {
       const response = await axios.get(url);
       setProducts(response.data.products || response.data);
       // Calculate total pages if API provides total product count
-      const totalProducts = response.data.total; // Assuming this is provided
+      const totalProducts = response.data.total;
       setTotalPages(Math.ceil(totalProducts / 10));
     } catch (error) {
       console.error("Error fetching products", error);
@@ -58,18 +57,31 @@ function HomePage({ addToCart }) {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setShowCategories(false); // Optionally close the dropdown
+    setShowCategories(false);
   };
 
   return (
     <div className="container">
-      <input
-        type="text"
-        className="form-control my-3"
-        placeholder="Search by name or category..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="search-bar">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault(); // Prevents the default form submission
+            setCurrentPage(1);
+            fetchProducts(selectedCategory, 1, searchTerm);
+          }}
+        >
+          <input
+            type="text"
+            className="form-control my-3"
+            placeholder="Search by name..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="btn btn-primary ml-2" type="submit">
+            Search
+          </button>
+        </form>
+      </div>
       <div className="categories-dropdown">
         <button
           onClick={() => setShowCategories(!showCategories)}
