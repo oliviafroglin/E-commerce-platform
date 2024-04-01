@@ -7,20 +7,39 @@ function HomePage({ addToCart }) {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [showCategories, setShowCategories] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1); // Assuming there's at least one page
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    fetchProducts();
+    // Resets to page 1 when category changes or a new search is initiated
+    setCurrentPage(1);
+    fetchProducts(selectedCategory, 1, searchTerm);
     fetchCategories();
-  }, []);
+  }, [selectedCategory, searchTerm]);
 
-  const fetchProducts = async (category = "") => {
+  useEffect(() => {
+    // This effect runs when currentPage changes, except on initial render
+    fetchProducts(selectedCategory, currentPage, searchTerm);
+  }, [currentPage]);
+
+  const fetchProducts = async (category = "", page = 1, search = "") => {
     let url = "https://dummyjson.com/products";
     if (category) {
       url += `/category/${category}`;
     }
+    url += `?skip=${(page - 1) * 10}&limit=10`;
+
+    if (search) {
+      url += `&search=${search}`;
+    }
+
     try {
       const response = await axios.get(url);
-      setProducts(response.data.products || response.data); // Adjust based on API response structure
+      setProducts(response.data.products || response.data);
+      // Calculate total pages if API provides total product count
+      const totalProducts = response.data.total; // Assuming this is provided
+      setTotalPages(Math.ceil(totalProducts / 10));
     } catch (error) {
       console.error("Error fetching products", error);
     }
@@ -39,7 +58,6 @@ function HomePage({ addToCart }) {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    fetchProducts(category);
     setShowCategories(false); // Optionally close the dropdown
   };
 
@@ -49,7 +67,8 @@ function HomePage({ addToCart }) {
         type="text"
         className="form-control my-3"
         placeholder="Search by name or category..."
-        onChange={(e) => fetchProducts(e.target.value)}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <div className="categories-dropdown">
         <button
@@ -60,6 +79,12 @@ function HomePage({ addToCart }) {
         </button>
         {showCategories && (
           <ul className="categories-menu">
+            <li
+              onClick={() => setSelectedCategory("")}
+              className="categories-item"
+            >
+              All Products
+            </li>
             {categories.map((category, index) => (
               <li
                 key={index}
@@ -72,6 +97,7 @@ function HomePage({ addToCart }) {
           </ul>
         )}
       </div>
+
       <div className="row">
         {products.map((product) => (
           <div key={product.id} className="col-md-4 mb-4">
@@ -94,6 +120,24 @@ function HomePage({ addToCart }) {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="pagination-controls">
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Prev
+        </button>
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
       </div>
     </div>
   );

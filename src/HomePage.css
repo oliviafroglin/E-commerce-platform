@@ -1,3 +1,22 @@
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .categories-dropdown {
   position: relative;
   display: inline-block;
