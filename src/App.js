@@ -33,6 +33,12 @@ function App() {
     setCart(cart.filter((item) => item.id !== productId));
   };
 
+  // Calculate total number of items in cart
+  const totalItemsInCart = cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
   return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -56,6 +62,9 @@ function App() {
           <div className="d-flex justify-content-end">
             <Link to="/cart" className="nav-item">
               <img src={cartIcon} alt="Cart" className="nav-icon" />
+              {totalItemsInCart > 0 && (
+                <span className="cart-count">{totalItemsInCart}</span>
+              )}
             </Link>
           </div>
         </div>

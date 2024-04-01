@@ -1,3 +1,4 @@
+/* Pagination controls */
 .pagination-controls {
   display: flex;
   justify-content: center;
@@ -6,10 +7,11 @@
 
 .pagination-controls button {
   margin: 0 10px;
-  padding: 5px 10px;
+  padding: 8px 16px;
   background-color: #f8f8f8;
   border: 1px solid #ccc;
   cursor: pointer;
+  font-family: 'EB Garamond', serif;
 }
 
 .pagination-controls button:disabled {
@@ -17,29 +19,7 @@
   cursor: not-allowed;
 }
 
-.search-bar {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.search-bar .form-control {
-  margin-right: 10px;
-}
-.search-bar .btn.btn-primary {
-  font-family: 'EB Garamond', serif;
-  background-color: black;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.search-bar .btn.btn-primary:hover {
-  background-color: #333;
-}
+/* Categories dropdown */
 .categories-dropdown {
   position: relative;
   display: inline-block;
@@ -50,6 +30,7 @@
   border: 1px solid #ccc;
   cursor: pointer;
   background-color: #f8f8f8;
+  font-family: 'Playfair Display', serif; /* Apply Playfair Display font */
 }
 
 .categories-dropdown .categories-toggle:hover {
@@ -59,10 +40,13 @@
 .categories-dropdown .categories-menu {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  top: 100%; /* Position the menu below the toggle */
+  left: 0; /* Align with the left edge of the toggle */
+  background-color: #fff;
+  border: 1px solid #ccc;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  font-family: 'Playfair Display', serif; /* Apply Playfair Display font */
 }
 
 .categories-dropdown .categories-item {
@@ -78,6 +62,8 @@
   display: block;
 }
 
+
+/* Card button */
 .card-body .btn.btn-primary {
   font-family: 'EB Garamond', serif;
   background-color: black;

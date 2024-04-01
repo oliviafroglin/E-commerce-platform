@@ -1,4 +1,3 @@
-/* Adjust the navbar layout */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,44 +6,45 @@
   background-color: #f8f8f8;
 }
 
-/* Adjustments for navbar items */
 .navbar-brand, .navbar-center, .nav-item {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-decoration: none; /* Remove underline */
 }
 
-/* Place home icon on the left */
+/* Styling for cart count */
+.cart-count {
+  font-family: 'EB Garamond', serif; 
+  color: black; 
+  margin-left: 5px; 
+}
+
 .nav-item {
-  order: -1; /* Moves to the far left */
+  order: -1; 
 }
 
-/* Center text and image */
 .navbar-center {
   flex-grow: 1;
   text-align: center;
-  order: 0; /* Ensures it stays in the middle */
+  order: 0; 
 }
 
-/* Place cart icon on the right */
 .navbar-brand {
-  margin-left: auto; /* Pushes to the far right */
+  margin-left: auto;
   text-align: right;
 }
 
-/* Hover effect for nav items */
 .nav-item:hover, .navbar-brand:hover {
-  background-color: #FAE4E1; /* Light aesthetic pink on hover */
+  background-color: #FAE4E1; 
   transition: background-color 0.3s ease-in-out;
 }
 
-/* Styling for navbar icons */
 .nav-icon {
-  height: 25px; /* Adjust the icon size */
-  vertical-align: middle; /* Aligns icon vertically */
+  height: 25px;
+  vertical-align: middle; 
 }
 
-/* Keep the rest of your global and specific styles unchanged */
 
 body {
   font-family: 'Arial', sans-serif;
