@@ -30,7 +30,7 @@
   border: 1px solid #ccc;
   cursor: pointer;
   background-color: #f8f8f8;
-  font-family: 'Playfair Display', serif; /* Apply Playfair Display font */
+  font-family: 'Playfair Display', serif; 
 }
 
 .categories-dropdown .categories-toggle:hover {
@@ -40,13 +40,13 @@
 .categories-dropdown .categories-menu {
   display: none;
   position: absolute;
-  top: 100%; /* Position the menu below the toggle */
-  left: 0; /* Align with the left edge of the toggle */
+  top: 100%; 
+  left: 0; 
   background-color: #fff;
   border: 1px solid #ccc;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  font-family: 'Playfair Display', serif; /* Apply Playfair Display font */
+  font-family: 'Playfair Display', serif;
 }
 
 .categories-dropdown .categories-item {
@@ -62,12 +62,39 @@
   display: block;
 }
 
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
 
-/* Card button */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  height: 100%; 
+}
+
+.card-img-container {
+  width: 100%; 
+  padding-top: 56.25%; 
+  position: relative;
+}
+
+.card-img-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
 .card-body .btn.btn-primary {
-  font-family: 'EB Garamond', serif;
-  background-color: black;
-  color: white;
+  font-family: 'EB Garamond', serif; 
+  background-color: black; 
+  color: white; 
   border: none;
   padding: 8px 16px;
   font-size: 16px;
@@ -76,5 +103,5 @@
 }
 
 .card-body .btn.btn-primary:hover {
-  background-color: #333;
+  background-color: #333; 
 }

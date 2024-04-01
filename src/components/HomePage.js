@@ -9,7 +9,7 @@ function HomePage({ addToCart }) {
   const [showCategories, setShowCategories] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [searchQuery, setSearchQuery] = useState(""); // Add state for search query
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     console.log(
@@ -115,11 +115,13 @@ function HomePage({ addToCart }) {
           .map((product) => (
             <div key={product.id} className="col-md-4 mb-4">
               <div className="card">
-                <img
-                  src={product.thumbnail}
-                  className="card-img-top"
-                  alt={product.title}
-                />
+                <div className="card-img-container">
+                  <img
+                    src={product.thumbnail}
+                    className="card-img-top"
+                    alt={product.title}
+                  />
+                </div>
                 <div className="card-body">
                   <h5 className="card-title">{product.title}</h5>
                   <p className="card-text">${product.price}</p>
