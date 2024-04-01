@@ -16,13 +16,20 @@ function Cart({ cart, setCart }) {
   };
 
   const decrementQuantity = (productId) => {
-    const newCart = cart.map((item) => {
-      if (item.id === productId && item.quantity && item.quantity > 1) {
-        return { ...item, quantity: item.quantity - 1 };
-      }
-      return item;
-    });
-    setCart(newCart);
+    const product = cart.find((item) => item.id === productId);
+    if (product && product.quantity === 1) {
+      // If the quantity is 1, remove the item from the cart
+      removeFromCart(productId);
+    } else {
+      // Otherwise, decrement the quantity
+      const newCart = cart.map((item) => {
+        if (item.id === productId) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+        return item;
+      });
+      setCart(newCart);
+    }
   };
 
   if (cart.length === 0) return <div>Your cart is empty</div>;

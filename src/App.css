@@ -1,51 +1,64 @@
 /* App.css */
-
 .navbar {
-  background-color: #007bff;
-  padding: 10px 20px;
-}
-
-.nav-link {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 5px 10px;
-  margin-right: 15px; 
-  border-radius: 5px; 
-  transition: background-color 0.3s ease; 
-}
-
-.nav-link:hover, .nav-link:focus {
-  background-color: #0056b3; 
-  text-decoration: none; 
+  padding: 0.5rem 1rem;
+  background-color: #f8f8f8;
 }
 
 .nav-icon {
-  width: 24px; 
-  height: 24px;
-  margin-right: 8px;
-}
-
-.navbar-brand {
-  color: #fff !important;
-  font-weight: bold;
-  font-size: 1.5em;
-}
-
-.navbar-nav {
-  width: 100%;
-  justify-content: center; 
+  height: 25px; 
 }
 
 .nav-item {
-  margin: 0 10px; 
+  transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: #FAE4E1; /* Light aesthetic pink on hover */
+}
+
+.navbar-brand img {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.nav-item.me-auto, .nav-item.ms-auto {
+  padding: 0.5rem 1rem; /* Add padding for better touch targets */
+}
+
+
+.navbar-brand img {
+  margin-right: 10px;
+}
+
+.navbar .nav-item, .navbar .navbar-brand {
+  flex: 1;
+  text-align: center;
+}
+
+.navbar .nav-item {
+  text-align: left; /* Align home icon to the left */
+}
+
+.navbar .cart-link {
+  text-align: right; /* Align cart icon to the right */
+}
+
+.navbar .navbar-brand {
+  flex: 2; /* Give the brand name more space and center it */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 body {
   font-family: 'Arial', sans-serif;
-  margin-top: 20px; 
+  background-color: #fff;
+  color: #333;
 }
-
-
 
 .App {
   text-align: center;
@@ -56,25 +69,14 @@ body {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #f8f9fa;
+  color: #606060;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #f7d6e0;
 }
 
 @keyframes App-logo-spin {
