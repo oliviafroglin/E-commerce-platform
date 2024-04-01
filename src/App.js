@@ -38,6 +38,11 @@ function App() {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand">
+            <img src={homeIcon} alt="Home" className="nav-icon" />
+          </Link>
+
+          {/* AllMart in the center */}
+          <div className="navbar-center mx-auto">
             All{" "}
             <img
               src={heartIcon}
@@ -46,17 +51,16 @@ function App() {
               className="d-inline-block align-text-top mx-1"
             />{" "}
             Mart
-          </Link>
-          <div className="d-flex align-items-center">
-            <Link to="/" className="nav-item me-auto">
-              <img src={homeIcon} alt="Home" className="nav-icon" />
-            </Link>
-            <Link to="/cart" className="nav-item ms-auto">
+          </div>
+
+          <div className="d-flex justify-content-end">
+            <Link to="/cart" className="nav-item">
               <img src={cartIcon} alt="Cart" className="nav-icon" />
             </Link>
           </div>
         </div>
       </nav>
+
       <Routes>
         <Route path="/" element={<HomePage addToCart={addToCart} />} />
         <Route path="/product/:productId" element={<ProductDetails />} />

@@ -5,17 +5,25 @@ import "../HomePage.css";
 function HomePage({ addToCart }) {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showCategories, setShowCategories] = useState(false); // Define showCategories state here
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [showCategories, setShowCategories] = useState(false);
 
   useEffect(() => {
     fetchProducts();
     fetchCategories();
   }, []);
 
-  const fetchProducts = async () => {
-    const response = await axios.get("https://dummyjson.com/products");
-    setProducts(response.data.products);
+  const fetchProducts = async (category = "") => {
+    let url = "https://dummyjson.com/products";
+    if (category) {
+      url += `/category/${category}`;
+    }
+    try {
+      const response = await axios.get(url);
+      setProducts(response.data.products || response.data); // Adjust based on API response structure
+    } catch (error) {
+      console.error("Error fetching products", error);
+    }
   };
 
   const fetchCategories = async () => {
@@ -29,15 +37,11 @@ function HomePage({ addToCart }) {
     }
   };
 
-  const searchProducts = (term) => {
-    setSearchTerm(term);
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    fetchProducts(category);
+    setShowCategories(false); // Optionally close the dropdown
   };
-
-  const filteredProducts = products.filter(
-    (product) =>
-      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.category.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="container">
@@ -45,7 +49,7 @@ function HomePage({ addToCart }) {
         type="text"
         className="form-control my-3"
         placeholder="Search by name or category..."
-        onChange={(e) => searchProducts(e.target.value)}
+        onChange={(e) => fetchProducts(e.target.value)}
       />
       <div className="categories-dropdown">
         <button
@@ -57,7 +61,11 @@ function HomePage({ addToCart }) {
         {showCategories && (
           <ul className="categories-menu">
             {categories.map((category, index) => (
-              <li key={index} className="categories-item">
+              <li
+                key={index}
+                onClick={() => handleCategoryClick(category)}
+                className="categories-item"
+              >
                 {category}
               </li>
             ))}
@@ -65,7 +73,7 @@ function HomePage({ addToCart }) {
         )}
       </div>
       <div className="row">
-        {filteredProducts.map((product) => (
+        {products.map((product) => (
           <div key={product.id} className="col-md-4 mb-4">
             <div className="card">
               <img

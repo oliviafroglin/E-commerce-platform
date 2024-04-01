@@ -1,4 +1,4 @@
-/* App.css */
+/* Adjust the navbar layout */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -7,52 +7,44 @@
   background-color: #f8f8f8;
 }
 
-.nav-icon {
-  height: 25px; 
-}
-
-.nav-item {
-  transition: background-color 0.3s ease;
-}
-
-.nav-item:hover {
-  background-color: #FAE4E1; /* Light aesthetic pink on hover */
-}
-
-.navbar-brand img {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.nav-item.me-auto, .nav-item.ms-auto {
-  padding: 0.5rem 1rem; /* Add padding for better touch targets */
-}
-
-
-.navbar-brand img {
-  margin-right: 10px;
-}
-
-.navbar .nav-item, .navbar .navbar-brand {
-  flex: 1;
-  text-align: center;
-}
-
-.navbar .nav-item {
-  text-align: left; /* Align home icon to the left */
-}
-
-.navbar .cart-link {
-  text-align: right; /* Align cart icon to the right */
-}
-
-.navbar .navbar-brand {
-  flex: 2; /* Give the brand name more space and center it */
+/* Adjustments for navbar items */
+.navbar-brand, .navbar-center, .nav-item {
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
+
+/* Place home icon on the left */
+.nav-item {
+  order: -1; /* Moves to the far left */
+}
+
+/* Center text and image */
+.navbar-center {
+  flex-grow: 1;
+  text-align: center;
+  order: 0; /* Ensures it stays in the middle */
+}
+
+/* Place cart icon on the right */
+.navbar-brand {
+  margin-left: auto; /* Pushes to the far right */
+  text-align: right;
+}
+
+/* Hover effect for nav items */
+.nav-item:hover, .navbar-brand:hover {
+  background-color: #FAE4E1; /* Light aesthetic pink on hover */
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Styling for navbar icons */
+.nav-icon {
+  height: 25px; /* Adjust the icon size */
+  vertical-align: middle; /* Aligns icon vertically */
+}
+
+/* Keep the rest of your global and specific styles unchanged */
 
 body {
   font-family: 'Arial', sans-serif;
@@ -60,30 +52,3 @@ body {
   color: #333;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
-.App-header {
-  background-color: #f8f9fa;
-  color: #606060;
-}
-
-.App-link {
-  color: #f7d6e0;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
